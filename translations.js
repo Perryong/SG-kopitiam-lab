@@ -1,7 +1,7 @@
 // English source text is the key; the two columns are Simplified Chinese and Japanese.
 const entries=`
 Kopitiam Lab — Singapore food & drink culture|咖啡店实验室 — 新加坡饮食文化|コピティアム・ラボ — シンガポールの食文化
-Explore 34 Singapore Kopi, Teh and Milo orders with interactive 3D pouring and stirring, plus the classic kopitiam breakfast.|通过互动三维冲泡和搅拌动画，探索34种新加坡咖啡、茶和美禄，以及经典咖啡店早餐。|注ぐ・混ぜる3Dアニメーションで、シンガポールのコピ・テー・ミロ34種類と定番の朝食を楽しみましょう。
+Explore 35 Singapore Kopi, Teh and Milo orders with interactive 3D pouring and stirring, plus the classic kopitiam breakfast.|通过互动三维冲泡和搅拌动画，探索35种新加坡咖啡、茶和美禄，以及经典咖啡店早餐。|注ぐ・混ぜる3Dアニメーションで、シンガポールのコピ・テー・ミロ35種類と定番の朝食を楽しみましょう。
 SINGAPORE FOOD & DRINK CULTURE|新加坡饮食文化|シンガポールの食文化
 The drinks counter|饮品柜台|ドリンクカウンター
 Breakfast culture|早餐文化|朝食文化
@@ -85,7 +85,7 @@ View your Nanyang meal reference|查看南洋早餐参考图|南洋の朝食の�
 Inspired by your supplied illustration. Animation and portions are stylised; this is not a cooking-time guide.|灵感来自您提供的插图。动画与份量均为示意，并非烹饪时间指南。|提供されたイラストを参考にしています。動きや分量はイメージで、調理時間の案内ではありません。
 Your reference guides & recipe notes|参考指南与配方说明|参考ガイドとレシピの注記
 From ordering guide to glass|从点单指南到杯中饮品|注文ガイドから一杯のドリンクへ
-Reference images are available for Kopi and Teh. The 34 orders combine your Kopi, Teh and Milo guides in one interactive counter.|咖啡和茶附有参考图片。此互动柜台汇集咖啡、茶和美禄指南中的34种点单方式。|コピとテーの参考画像をご覧いただけます。コピ・テー・ミロのガイドにある34種類を、ひとつのカウンターにまとめました。
+Reference images are available for Kopi and Teh. The 35 orders combine your Kopi, Teh and Milo guides in one interactive counter.|咖啡和茶附有参考图片。此互动柜台汇集咖啡、茶和美禄指南中的35种点单方式。|コピとテーの参考画像をご覧いただけます。コピ・テー・ミロのガイドにある35種類を、ひとつのカウンターにまとめました。
 Blue water and separated layers make ingredients easier to see. Real drinks mix together. Quantities, displacement and motion are educational illustrations, not official recipes or fluid simulations.|蓝色的水和分层显示便于辨认配料。实际饮品会混合。用量、体积变化及动作仅用于教学示意，并非官方配方或流体模拟。|青い水と層の表示は、材料を見やすくするためのものです。実際の飲み物は混ざり合います。分量・体積変化・動きは学習用のイメージで、公式レシピや流体シミュレーションではありません。
 Independent educational project. Reference artwork belongs to its respective owners. Not affiliated with Naumi, Ya Kun or Nestlé; MILO is a Nestlé trademark.|本项目为独立教育项目。参考图版权归各自所有者所有。与 Naumi、亚坤或雀巢无关联；MILO 为雀巢商标。|独立した教育プロジェクトです。参考画像の権利は各権利者に帰属します。Naumi、ヤクン、ネスレとは提携していません。MILO はネスレの商標です。
 KOPITIAM LAB · SINGAPORE, SHARED AT THE TABLE|咖啡店实验室 · 餐桌上的新加坡|コピティアム・ラボ・食卓で分かち合うシンガポール
@@ -127,6 +127,8 @@ Sweet, milky kopi poured over ice.|香甜奶咖啡，加冰享用。|甘いミ�
 Sweetened black kopi, served iced.|加糖黑咖啡，冰饮。|砂糖入りのブラックコピをアイスで。
 Your guide’s version: no extra sugar.|参考指南中的版本：不额外加糖。|参考ガイドのレシピ：砂糖を追加しません。
 ¹ This follows the uploaded guide: condensed milk with no extra sugar. Condensed milk is still sweetened. For a clear no-added-sugar order, choose Kopi C Kosong or Kopi O Kosong.|¹ 此版本依据上传的指南：加入炼乳，不额外加糖。炼乳本身含糖。如需明确不加糖的点单，请选淡奶无糖咖啡（Kopi C Kosong）或无糖黑咖啡（Kopi O Kosong）。|¹ 提供されたガイドに基づき、練乳を入れ、砂糖は追加しません。練乳自体には砂糖が含まれます。加糖しない注文なら、Kopi C Kosong または Kopi O Kosong をお選びください。
+Black tea with condensed milk, without extra sugar.|红茶加入炼乳，不额外加糖。|練乳入りの紅茶。砂糖は追加しません。
+This illustrative version follows the Kopi Kosong convention used here: condensed milk with no extra sugar. Condensed milk is still sweetened. Ordering conventions vary; for no added sugar, choose Teh C Kosong or Teh O Kosong.|此示意版本沿用本项目的 Kopi Kosong 解释：加入炼乳，不额外加糖。炼乳本身含糖。各店点单惯例不同；如需不加糖，请选 Teh C Kosong 或 Teh O Kosong。|この例では、本サイトの Kopi Kosong と同様に練乳を入れ、砂糖は追加しません。練乳自体には砂糖が含まれます。注文の呼び方は店によって異なります。加糖しない注文なら Teh C Kosong または Teh O Kosong をお選びください。
 Fragrant black tea with sweet condensed milk.|芳香红茶搭配香甜炼乳。|香り豊かな紅茶に甘い練乳。
 The sweetness comes from condensed milk; no separate sugar is added in this example.|甜味来自炼乳；此示例不另加糖。|甘さは練乳によるものです。この例では砂糖を別に加えていません。
 Black tea with sugar, without milk.|红茶加糖，不加奶。|ミルクなしの紅茶、砂糖入り。
@@ -189,6 +191,7 @@ Kopi O Kosong Di Lo|不兑水无糖黑咖啡|水を加えないブラックコ�
 Kopi Peng|冰奶咖啡|アイスコピ
 Kopi O Peng|冰黑咖啡|アイスブラックコピ
 Kopi Kosong¹|不额外加糖咖啡¹|砂糖を追加しないコピ¹
+Teh Kosong|不额外加糖奶茶|砂糖を追加しないテー
 Teh O|红茶|ミルクなしのテー
 Teh C|淡奶茶|エバミルク入りテー
 Teh Siew Dai|少甜奶茶|甘さ控えめのテー

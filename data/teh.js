@@ -3,6 +3,7 @@ export const ingredients={sugar:{name:'Sugar',color:'#d6b686',unit:'g',verb:'Add
 const recipe=(id,name,family,desc,tea,water,condensed,evaporated,sugar,ice=0,note='')=>({id,name,family,desc,amounts:{sugar,condensed,evaporated,tea,water,ice},note});
 export const recipes=[
  recipe('teh','Teh','milk','Fragrant black tea with sweet condensed milk.',150,40,24,0,0,0,'The sweetness comes from condensed milk; no separate sugar is added in this example.'),
+ recipe('kosong','Teh Kosong','milk','Black tea with condensed milk, without extra sugar.',150,40,24,0,0,0,'This illustrative version follows the Kopi Kosong convention used here: condensed milk with no extra sugar. Condensed milk is still sweetened. Ordering conventions vary; for no added sugar, choose Teh C Kosong or Teh O Kosong.'),
  recipe('o','Teh O','black','Black tea with sugar, without milk.',150,64,0,0,6),
  recipe('c','Teh C','milk','Black tea with evaporated milk and sugar.',150,40,0,24,6),
  recipe('siew','Teh Siew Dai','milk','A less-sweet milk tea with less condensed milk.',150,52,12,0,0),

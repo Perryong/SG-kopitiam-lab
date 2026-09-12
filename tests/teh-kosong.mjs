@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {recipes,stagesFor} from '../recipes.js';
+const teh=recipes.find(r=>r.id==='teh-kosong');
+assert.ok(teh,'Teh Kosong is available');
+assert.equal(teh.name,'Teh Kosong');
+assert.equal(teh.amounts.sugar,0);
+assert.deepEqual(stagesFor(teh),['condensed','tea','water']);
+assert.equal(recipes.filter(r=>r.category==='teh').length,10);
+assert.equal(recipes.length,35);
+assert.match(teh.note,/sweetened/);
+console.log('Teh Kosong recipe and pouring stages passed.');

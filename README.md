@@ -1,6 +1,6 @@
 # Kopitiam Lab
 
-One interactive Singapore drinks counter combining 16 Kopi, 9 Teh and 9 Milo orders, with an interactive kaya toast and soft-boiled egg breakfast scene.
+One interactive Singapore drinks counter combining 16 Kopi, 10 Teh and 9 Milo orders, with an interactive kaya toast and soft-boiled egg breakfast scene.
 
 ## Use the app
 Choose Kopi, Teh or Milo, select an order, and press **Make this drink**. Pause, replay or scrub the timeline. Select **Stirred** to watch the spoon swirl the layers before blending their colours. Drag to rotate the glass and scroll to zoom.
@@ -38,7 +38,7 @@ Windows: `py -m http.server 8000`. Open http://localhost:8000. Do not open index
 - `DEPLOYMENT.md`: GitHub Pages instructions.
 
 ## Notes
-Amounts and ordering conventions are illustrative; shops vary. The Kopi Kosong condensed-milk interpretation follows the supplied guide and retains its qualification. Milo powder contains sugar and milk ingredients. Water is tinted blue only for the separated educational view.
+Amounts and ordering conventions are illustrative; shops vary. The Kopi Kosong condensed-milk interpretation follows the supplied guide and retains its qualification. Teh Kosong uses the same illustrative convention: condensed milk with no extra sugar; the condensed milk is still sweetened. Milo powder contains sugar and milk ingredients. Water is tinted blue only for the separated educational view.
 
 The breakfast animation depicts eggs that are already soft-boiled; it is an illustration, not a cooking or nutrition guide. Sources: https://en.wikipedia.org/wiki/Kaya_toast and https://www.cntraveler.com/story/why-you-should-eat-kaya-toast-in-singapore
 
