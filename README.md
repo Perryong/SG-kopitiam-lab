@@ -7,6 +7,11 @@ Choose Kopi, Teh or Milo, select an order, and press **Make this drink**. Pause,
 
 All three categories use visible jug liquid, ingredient-specific streams, corrected external handles, impact ripples and staged stirring. Milo adds spooned powder and a Dinosaur topping. The Kopi and Teh guides appear under Reference guides. The Milo reference image is omitted.
 
+## Display language
+Use **English / 中文 / 日本語** in the header to switch between English, Simplified Chinese and Japanese. The interface, recipes, animation labels and accessibility text change without resetting your selection or playback. The browser remembers your choice when local storage is available. Original ordering names are retained beside translations; supplied reference images and downloadable documents remain in their original languages.
+
+Translation coverage check: `node tests/translations.mjs`.
+
 ## Make a Nanyang breakfast
 Scroll to the breakfast scene and select **Make this breakfast**. Two soft-boiled eggs crack into the bowl, followed by soya sauce and white pepper. The twelve-second sequence supports pause, replay, speed selection and backward or forward scrubbing. Step buttons inspect each action; Reset restores the eggs and camera. Drag to orbit the meal. Choosing Kopi, Teh or Milo also changes the cup beside the toast. Playback begins only when requested; offscreen scenes pause.
 
