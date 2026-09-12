@@ -1,10 +1,8 @@
 # GitHub Pages
 
-1. Extract the source ZIP.
-2. Create a GitHub repository such as `SG-KOPITIAM-LAB`.
-3. Upload the extracted folder contents so `index.html`, `main.js`, `recipes.js`, `data`, `assets` and `vendor` are at the repository root.
-4. In Settings → Pages select Deploy from a branch, main, / (root), and Save.
-5. Open the URL GitHub provides once deployment completes.
+1. In repository Settings → Pages, select **GitHub Actions** as the source.
+2. Push changes to `main`. The **Deploy to GitHub Pages** workflow uploads the static site and deploys it automatically. You can also select **Run workflow** from its Actions page.
+3. Wait for the workflow to succeed, then open https://perryong.github.io/SG-kopitiam-lab/.
 
 Relative paths support repository subpaths. There is no backend, API key or build step. Keep every module and vendor file together.
 
