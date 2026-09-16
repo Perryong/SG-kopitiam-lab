@@ -1,7 +1,6 @@
 // English source text is the key; the two columns are Simplified Chinese and Japanese.
 const entries=`
 Created by|创作者|制作
-GitHub repository|GitHub 代码仓库|GitHub リポジトリ
 Kopitiam Lab — Singapore food & drink culture|咖啡店实验室 — 新加坡饮食文化|コピティアム・ラボ — シンガポールの食文化
 Explore 35 Singapore Kopi, Teh and Milo orders with interactive 3D pouring and stirring, plus the classic kopitiam breakfast.|通过互动三维冲泡和搅拌动画，探索35种新加坡咖啡、茶和美禄，以及经典咖啡店早餐。|注ぐ・混ぜる3Dアニメーションで、シンガポールのコピ・テー・ミロ35種類と定番の朝食を楽しみましょう。
 SINGAPORE FOOD & DRINK CULTURE|新加坡饮食文化|シンガポールの食文化
