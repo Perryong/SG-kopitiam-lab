@@ -41,3 +41,5 @@ html:not([lang=en]) .glass-caption h2{font-size:25px}
 @media(max-width:1100px){header{flex-wrap:wrap;height:auto;min-height:104px;gap:14px;padding:16px 0}header .stamp{display:none}}
 @media(max-width:650px){header{gap:12px;min-height:84px}.language-switch{margin-left:auto}.language-switch button{padding:8px}.timeline-heading{flex-wrap:wrap}.meal-scene-label{flex-wrap:wrap}.stage-top>span{letter-spacing:0}.view-switch button{padding:7px 9px}html:not([lang=en]) .glass-caption h2{font-size:20px}html:not([lang=en]) #menu-list{grid-template-columns:1fr}}
 @media(max-width:650px){html:not([lang=en]) .category-switch{grid-template-columns:repeat(3,minmax(0,1fr))}html:not([lang=en]) .category-switch button{min-width:0;grid-template-columns:minmax(0,1fr);overflow-wrap:anywhere}html:not([lang=en]) .category-switch button strong{font-size:16px}}
+
+footer{flex-wrap:wrap}.footer-credit{flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;font-size:14px;letter-spacing:0}.footer-credit a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:3px}
