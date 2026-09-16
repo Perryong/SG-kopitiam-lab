@@ -147,11 +147,11 @@ Milo and hot water, without extra milk or sugar.|美禄加热水，不额外加�
 Kosong means no extra sugar in this example. Milo powder itself contains sugar and milk ingredients.|此示例中 Kosong 表示不额外加糖。美禄粉本身含糖及乳成分。|この例の Kosong は砂糖を追加しないという意味です。ミロの粉自体に砂糖と乳成分が含まれます。
 Chocolate-malt richness with evaporated milk.|浓郁巧克力麦芽风味，搭配淡奶。|チョコレート麦芽のコクにエバミルクを合わせます。
 Milo with added sugar, without extra milk.|美禄加糖，不额外加奶。|砂糖入りのミロ。ミルクは追加しません。
-A thicker, stronger Milo with extra powder and condensed milk.|增加美禄粉和炼乳，口感更浓厚。|粉と練乳を加えた、濃厚なミロ。
+More Milo powder and less water make this stronger, thicker and more chocolate-malty. The condensed milk stays at the regular amount.|增加美禄粉并减少水量，使味道更浓、口感更厚实，巧克力麦芽风味更突出。炼乳用量与普通美禄相同。|ミロの粉を増やし、水を減らすことで、濃く、とろみのあるチョコレート麦芽風味になります。練乳の量は通常のミロと同じです。
 Iced Milo crowned with a generous mound of dry Milo powder.|冰美禄顶部堆上丰富的干美禄粉。|アイスミロの上に、ミロの粉をたっぷりのせます。
 The dry powder crown stays on top when you stir the drink below. This is a stylised illustration.|搅拌下方饮品时，干粉顶料仍留在表面。此为示意动画。|下のドリンクを混ぜても、上の粉はそのまま残ります。これは演出を加えたイメージです。
 Less condensed milk for a less-sweet order.|减少炼乳，甜度更低。|練乳を減らして、甘さ控えめに。
-An extra-sweet Milo with more condensed milk.|增加炼乳，更香甜的美禄。|練乳を増やした、甘めのミロ。
+More condensed milk makes this sweeter and creamier. The Milo powder stays at the regular amount, so the change is sweetness rather than strength.|增加炼乳，让饮品更甜、更香滑。美禄粉用量与普通美禄相同，因此改变的是甜度，而不是浓度。|練乳を増やして、より甘くクリーミーにします。ミロの粉は通常と同じ量なので、変わるのは濃さではなく甘さです。
 The classic condensed-milk Milo served over ice.|经典炼乳美禄，加冰享用。|定番の練乳入りミロをアイスで。
 Page sections|页面导航|ページ内の案内
 Choose drink category|选择饮品类别|飲み物の種類を選択
