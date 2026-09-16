@@ -151,7 +151,7 @@ More Milo powder and less water make this stronger, thicker and more chocolate-m
 Iced Milo crowned with a generous mound of dry Milo powder.|冰美禄顶部堆上丰富的干美禄粉。|アイスミロの上に、ミロの粉をたっぷりのせます。
 The dry powder crown stays on top when you stir the drink below. This is a stylised illustration.|搅拌下方饮品时，干粉顶料仍留在表面。此为示意动画。|下のドリンクを混ぜても、上の粉はそのまま残ります。これは演出を加えたイメージです。
 Less condensed milk for a less-sweet order.|减少炼乳，甜度更低。|練乳を減らして、甘さ控えめに。
-More condensed milk makes this sweeter and creamier. The Milo powder stays at the regular amount, so the change is sweetness rather than strength.|增加炼乳，让饮品更甜、更香滑。美禄粉用量与普通美禄相同，因此改变的是甜度，而不是浓度。|練乳を増やして、より甘くクリーミーにします。ミロの粉は通常と同じ量なので、変わるのは濃さではなく甘さです。
+Extra condensed milk makes this Milo sweeter and creamier, without making it stronger.|增加炼乳，让这杯美禄更甜、更香滑，但不会更浓。|練乳を増やし、濃さは変えずに、より甘くクリーミーにします。
 The classic condensed-milk Milo served over ice.|经典炼乳美禄，加冰享用。|定番の練乳入りミロをアイスで。
 Page sections|页面导航|ページ内の案内
 Choose drink category|选择饮品类别|飲み物の種類を選択
