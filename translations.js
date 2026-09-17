@@ -4,6 +4,10 @@ Created by|创作者|制作
 Kopitiam Lab — Singapore food & drink culture|咖啡店实验室 — 新加坡饮食文化|コピティアム・ラボ — シンガポールの食文化
 Explore 35 Singapore Kopi, Teh and Milo orders with interactive 3D pouring and stirring, plus the classic kopitiam breakfast.|通过互动三维冲泡和搅拌动画，探索35种新加坡咖啡、茶和美禄，以及经典咖啡店早餐。|注ぐ・混ぜる3Dアニメーションで、シンガポールのコピ・テー・ミロ35種類と定番の朝食を楽しみましょう。
 SINGAPORE FOOD & DRINK CULTURE|新加坡饮食文化|シンガポールの食文化
+EXPLORE THE ISLAND|探索新加坡|シンガポールを探索
+Discover Singapore in 3D.|以三维视角探索新加坡。|3Dでシンガポールを発見。
+Explore Singapore’s nature, transport, land use, density, and urban growth through seven interactive map layers.|通过七个互动地图图层，探索新加坡的自然环境、交通、土地利用、城市密度与发展。|7つのインタラクティブな地図レイヤーで、シンガポールの自然、交通、土地利用、密度、都市の成長を探索できます。
+Explore Singapore in 3D ↗|探索新加坡3D地图 ↗|3Dでシンガポールを探索 ↗
 The drinks counter|饮品柜台|ドリンクカウンター
 Breakfast culture|早餐文化|朝食文化
 南洋风味|南洋风味|南洋の味
