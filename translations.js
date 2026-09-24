@@ -1,5 +1,42 @@
+import {preparationTranslations} from './data/preparations.js';
+import {foodTranslations} from './data/food.js';
 // English source text is the key; the two columns are Simplified Chinese and Japanese.
 const entries=`
+Prepare in 3D|三维制作|3Dで作る
+FROM INGREDIENTS TO THE TABLE|从食材到餐桌|食材から食卓へ
+Make a hawker favourite.|制作小贩美食。|ホーカーの人気料理を作ろう。
+Choose a dish|选择美食|料理を選ぶ
+Choose a dish to explore its preparation.|选择一道美食，探索制作过程。|料理を選んで調理の流れを見てみましょう。
+Follow the ingredients, explore each step, or play the whole sequence.|跟随食材，探索每个步骤，或播放完整过程。|食材を追い、各手順を確認したり、全体を再生したりできます。
+Dish preparation steps|美食制作步骤|料理の調理手順
+Make this dish|制作这道美食|この料理を作る
+Ready to serve|可以上桌了|できあがり
+Dish preparation progress|美食制作进度|調理の進行状況
+Reset dish & view|重置美食与视角|料理と視点をリセット
+A stylised preparation illustration. Ingredients may be pre-cooked; animation speed does not represent cooking time.|风格化制作示意。食材可能已预先煮熟；动画速度不代表实际烹饪时间。|調理の流れを表すイラストです。調理済みの食材も含み、再生速度は実際の調理時間を示しません。
+The 3D kitchen needs WebGL. You can still explore the illustrated food cards.|三维厨房需要WebGL。您仍可浏览美食插图卡片。|3DキッチンにはWebGLが必要です。料理のイラストカードは引き続きご覧いただけます。
+Interactive food preparation. Drag to rotate and scroll to zoom.|互动美食制作。拖动旋转，滚动缩放。|料理作りの3D表示。ドラッグで回転、スクロールで拡大縮小。
+The 3D kitchen was interrupted. Reload to restore it.|三维厨房已中断。请刷新恢复。|3Dキッチンが中断されました。再読み込みしてください。
+
+Food culture|饮食文化|食文化
+MANY ROOTS · ONE SHARED TABLE|多元渊源 · 同桌共享|多彩なルーツ・ひとつの食卓
+Singapore’s Hawker Table|新加坡小贩餐桌|シンガポールのホーカー食卓
+25 dishes and food traditions. Open a card, meet the ingredients, and discover a little of the culture behind each plate.|25种美食与饮食传统。展开卡片，认识食材，了解每道美食背后的文化。|25の料理と食文化。カードを開いて、食材と一皿の背景をのぞいてみましょう。
+Recipes travelled with communities and grew through local tastes. Hawker centres bring these traditions together over everyday meals.|食谱随社群迁徙，并因本地口味而发展。小贩中心让这些传统在日常餐桌上相遇。|料理は人々とともに旅をし、地元の味覚に育まれました。ホーカーセンターでは日々の食事にその伝統が集います。
+食 · MAKAN|食 · MAKAN|食 · MAKAN
+Filter food stories|筛选美食故事|食のストーリーを絞り込む
+Explore this dish|探索这道美食|この料理を知る
+Key ingredients|主要食材|主な食材
+Flavour & texture|风味与口感|味と食感
+At the table|餐桌文化|食卓の文化
+Explore the 3D breakfast ↗|探索三维早餐 ↗|3Dの朝食を体験 ↗
+Enable JavaScript to explore the food cards, or read the linked food guide below.|启用JavaScript以浏览美食卡片，或阅读下方美食指南。|JavaScriptを有効にするか、下のフードガイドをご覧ください。
+Selection inspired by Mark Wiens’ Singapore food guide. Original short notes and stylised illustrations; ingredients and preparations vary.|选题参考Mark Wiens的新加坡美食指南。原创简述与风格化插图；食材与做法各有不同。|Mark Wiensのシンガポールガイドを参考に選びました。説明文とイラストは独自制作で、食材や調理法には違いがあります。
+Read the Migrationology guide ↗|阅读Migrationology指南 ↗|Migrationologyのガイドを読む ↗
+Discover Singapore’s hawker heritage ↗|了解新加坡小贩文化遗产 ↗|シンガポールのホーカー文化を知る ↗
+Explore the dishes and traditions ↗|探索美食与传统 ↗|料理と伝統をもっと知る ↗
+Food illustrations created with Higgsfield. Kaya toast uses the existing breakfast artwork.|美食插图由Higgsfield生成。咖椰吐司沿用现有早餐插图。|料理のイラストはHiggsfieldで制作。カヤトーストは既存の朝食イラストを使用しています。
+
 Others|其他饮品|その他
 04 / 其他|04 / 其他|04 / その他
 Make this drink|制作这杯饮品|この飲み物を作る
@@ -273,12 +310,14 @@ Milo Gah Dai|多甜美禄|甘めのミロ
 Milo Peng|冰美禄|アイスミロ
 `;
 for(const line of names.trim().split('\n')){const [en,zh,ja]=line.split('|');dictionary.set(en,{zh:`${zh}（${en}）`,ja:`${ja}（${en}）`});}
+for(const [en,zh,ja] of [...foodTranslations,...preparationTranslations])dictionary.set(en,{zh,ja});
 export function translate(text,language){
  if(!['zh','ja'].includes(language))return text;
  const source=text.trim(),entry=dictionary.get(source);
  let result=entry?.[language],match;
  if(result===undefined){
-  if((match=source.match(/^Step (\d+\/\d+) · (.+)$/)))result=`${language==='zh'?'步骤':'手順'} ${match[1]} · ${translate(match[2],language)}`;
+  if((match=source.match(/^(\d+) food stories$/)))result=language==='zh'?`${match[1]}个美食故事`:`${match[1]}の食のストーリー`;
+  else if((match=source.match(/^Step (\d+\/\d+) · (.+)$/)))result=`${language==='zh'?'步骤':'手順'} ${match[1]} · ${translate(match[2],language)}`;
   else if((match=source.match(/^(\d+)\. (.+)$/)))result=`${match[1]}. ${translate(match[2],language)}`;
   else if((match=source.match(/^(\d+) (styles|ways to order)$/)))result=language==='zh'?`${match[1]}种点法`:`${match[1]}種類の飲み方`;
   else if((match=source.match(/^(\d+) (g|ml|cubes|pieces)$/)))result=`${match[1]} ${{zh:{g:'克',ml:'毫升',cubes:'块',pieces:'片／个'},ja:{g:'g',ml:'ml',cubes:'個',pieces:'個'}}[language][match[2]]}`;

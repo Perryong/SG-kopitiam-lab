@@ -51,3 +51,20 @@ The Others menu follows [Kaffe & Toast’s beverage menu](https://www.kaffeandto
 `assets/others.png` was generated with Higgsfield on 2026-09-24 (job `3dc83e5f-14d6-47dc-865c-0c4c077ecf97`). The reference artwork depicts serving examples and remains in English. Drink names, ingredients and controls support all three interface languages.
 
 Run all checks: `for t in tests/*.mjs; do node "$t" || exit 1; done`.
+
+## Singapore’s Hawker Table
+Use **Food culture** in the navigation to explore 20 dishes and food traditions selected from [Migrationology’s Singapore food guide](https://migrationology.com/singapore-food/). Filter the cards, then expand one for ingredients, flavour and a short cultural note. Kaya Toast Breakfast links back to the interactive breakfast scene. English, Chinese and Japanese are supported through the existing language switch.
+
+`data/food.js` holds the catalogue and translations; `food.js` renders native expandable cards. Six Higgsfield-generated sheets (`assets/food-1.png` through `food-6.png`) provide 24 illustrations, displayed as individual quadrants with CSS. The existing breakfast illustration completes the collection. These are static 3D-style illustrations, not rotatable models. Ingredients and preparation vary; the cards are a cultural introduction, not official recipes or dietary guidance.
+
+Additional context: [National Heritage Board, Serving Up a Legacy](https://www.roots.gov.sg/stories-landing/stories/Serving-Up-a-Legacy) and [Singaporean cuisine](https://en.wikipedia.org/wiki/Singaporean_cuisine). Original concise descriptions are used; restaurant prices and opening hours are not reproduced.
+
+Higgsfield generation jobs (2026-09-24), in sheet order: `9cf9d9ad-6c0a-4b9f-b35a-8e74288b7b2d`, `0c1797b5-fabf-44ff-bd98-0d5998faa645`, `fee7e207-73c8-45f1-affa-b3e9b33b2fbe`, `6675543b-c2fc-4229-933f-550de6bdc50e`, `7d23feb4-bc23-4cbc-950d-06dc7b1c47fc`, `51465559-1dee-4bd1-b5fa-95673dc753e4`.
+
+Check the catalogue, filters and translations with `node tests/food-culture.mjs`.
+
+The interactive kitchen adds 19 procedural Three.js dishes alongside the breakfast scene. Choose a dish or use **Prepare in 3D** on its card; rotate, zoom, play/pause, select a step or scrub the four-stage timeline. `data/preparations.js` holds the sequences, `food-scene.js` builds the geometry, and `food-kitchen.js` handles playback. Models are stylized illustrations; sequences may use prepared ingredients and do not represent cooking times. Rendering pauses offscreen and one dish is kept in memory. Run `node tests/food-scene.mjs` for stage, reset, replay and disposal checks.
+
+Food models also use shared irregular geometry, detailed rice grains and prawns, meat fibres, charred satay, and a small procedural bump/roughness texture. These refinements are authored directly in Three.js, not generated Blender assets. Scene checks verify that displayed geometry, materials and surface textures are disposed exactly once when changing dishes.
+
+Fish head curry: the standalone card `assets/fish-head-curry.png` was generated with Higgsfield from the supplied reference (job `fd42a693-f218-4c8a-8e06-533badbcfc23`). The interactive head was authored through Blender MCP; `assets/fish-head.blend` retains the editable scene and `scripts/build-fish-head.py` regenerates its indexed Three.js mesh in `assets/fish-head-model.js`. The model remains stylized; the card is a separate detailed illustration.
