@@ -1,8 +1,10 @@
 import * as THREE from './vendor/three.module.js';
+import {ingredients} from './data/others.js';
 import {jugHandleGeometry} from './handles.js';
 const smooth=x=>{x=Math.max(0,Math.min(1,x));return x*x*(3-2*x);};
 export const pourFill=phase=>smooth((phase-.12)/.76);
 export const flowStyles={coffee:{color:0x66351f,radius:.025,reach:.20},tea:{color:0xb66b20,radius:.025,reach:.20},condensed:{color:0xeecb7e,radius:.048,reach:.07},evaporated:{color:0xf4e7c5,radius:.035,reach:.15},water:{color:0x89bbc5,radius:.019,reach:.24}};
+for(const [key,i] of Object.entries(ingredients))if(i.unit==='ml')flowStyles[key]={color:Number(i.color.replace('#','0x')),radius:key==='honey'?.04:.025,reach:key==='honey'?.08:.20};
 export function createPourRig(parent){
  const rig=new THREE.Group();parent.add(rig);const jug=new THREE.Group();rig.add(jug);
  const metal=new THREE.MeshStandardMaterial({color:0xb6b9b1,roughness:.28,metalness:.8,side:THREE.DoubleSide});

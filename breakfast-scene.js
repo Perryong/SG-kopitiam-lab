@@ -85,5 +85,5 @@ export function createBreakfastScene(parent){
   root.userData.state=state;return state;
  }
  update(1);
- return {root,eggs,soyBottle,shaker,stream,soyPatches,pepper,grains,drink,update,setDrink(category){drink.material.color.set(category==='teh'?'#a9662b':category==='milo'?'#865136':'#4f2d1b');}};
+ return {root,eggs,soyBottle,shaker,stream,soyPatches,pepper,grains,drink,update,setDrink(category,color){drink.material.color.set(color||(category==='teh'?'#a9662b':category==='milo'?'#865136':'#4f2d1b'));}};
 }

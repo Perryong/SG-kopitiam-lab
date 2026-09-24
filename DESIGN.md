@@ -23,3 +23,10 @@ Checks cover all 34 recipes, category switching, playback, mixing, handle cleara
 
 ## Mobile canvas sizing fix
 The breakfast canvas now uses explicit CSS pixel dimensions independently of its high-DPI drawing buffer. It is positioned inside a bounded panel, and grid children can shrink. This prevents intrinsic canvas dimensions from expanding the grid, clipping alternate step buttons and moving the meal beyond the visible panel. Resize handling ignores temporarily zero-sized panels. `tests/breakfast-viewport.mjs` executes the controller and the vendored Three.js sizing method without a GPU across 12 width/pixel-density combinations. Browser visual verification remains unavailable.
+
+## Others category (September 2026)
+The shared counter now has 47 recipes across four categories. Others adds six liquid ingredients to the existing pouring rig and five garnish types, with recipe-specific final colours. Garnish positions derive from preparation progress so replay and reverse scrubbing clear and restore them. Barley grains are shown at the surface to keep them visible above the opaque educational liquid. Drink selection also updates the breakfast pairing via one shared event, including selections through the optional structured tool.
+
+The new Higgsfield guide is bundled locally as `assets/others.png`. Menu names follow Kaffe & Toast; recipes and garnishes are illustrative. The Others recipe/pouring and garnish checks are in `tests/others.mjs`; the translation check includes all new recipe and ingredient text.
+
+Verification for this addition: all five Node check files pass. Browser checks selected and started preparation for every Others drink, checked Chinese/Japanese language switching and guide loading, and visually inspected citrus and barley garnishes. The browser reported no console errors.

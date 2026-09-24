@@ -3,7 +3,8 @@ import {glassHandleGeometry} from './handles.js';
 import {createStirring,stirBlend} from './stirring.js';
 import {createPourRig,pourFill} from './pouring.js';
 import {OrbitControls} from './vendor/OrbitControls.js';
-import {recipes,ingredients,categories,stagesFor,fillAt,liquidTotal} from './recipes.js';
+import {recipes,ingredients,categories,stagesFor,fillAt,liquidKeys} from './recipes.js';
+import {createGarnishes} from './garnishes.js';
 const $=s=>document.querySelector(s),host=$('#scene');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const phone=matchMedia('(max-width:650px)');
@@ -29,13 +30,14 @@ torus(1.025,.037,glassEdge,0,3.16,0).renderOrder=11;torus(1.005,.045,glassEdge,0
 const handle=mesh(glassHandleGeometry(),glassEdge);handle.name='glass-handle';handle.renderOrder=11;
 // Thin vertical highlights keep the clear glass legible without obscuring its contents.
 for(const angle of [-.8,1.9]){const path=new THREE.LineCurve3(new THREE.Vector3(Math.cos(angle)*1.05,.42,Math.sin(angle)*1.05),new THREE.Vector3(Math.cos(angle)*1.05,3.01,Math.sin(angle)*1.05));const h=mesh(new THREE.TubeGeometry(path,1,.014,6,false),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.6,depthWrite:false}));h.renderOrder=12;}
-const liquidKeys=['powder','condensed','evaporated','coffee','tea','water'];const liquids={};
+const liquids={};
 for(const k of liquidKeys){const mat=new THREE.MeshStandardMaterial({color:ingredients[k].color,roughness:.4,metalness:0});liquids[k]=cylinder(.962,.962,1,mat);liquids[k].castShadow=false;}
 const blended=cylinder(.963,.963,1,new THREE.MeshStandardMaterial({color:0x8d5834,roughness:.28}));blended.visible=false;
 const iceGroup=new THREE.Group();root.add(iceGroup);const iceMat=new THREE.MeshPhysicalMaterial({color:0xd6eff4,roughness:.17,metalness:.12,transparent:true,opacity:.8,depthWrite:false});const ice=[];for(let i=0;i<6;i++){const m=mesh(new THREE.BoxGeometry(.37,.34,.38),iceMat,0,0,0,iceGroup);m.rotation.set(i*.4,.3+i*.8,.2+i*.3);m.renderOrder=5;ice.push(m);}
 const sugar=[];for(let i=0;i<8;i++){const m=mesh(new THREE.BoxGeometry(.14,.14,.14),new THREE.MeshStandardMaterial({color:0xfff8df,roughness:1}),0,0,0);sugar.push(m);}
 const pourRig=createPourRig(root);
 const stirRig=createStirring(root);
+const garnishes=createGarnishes(root);
 const metal=new THREE.MeshStandardMaterial({color:0xb6b9b1,roughness:.3,metalness:.8});
 const spoon=new THREE.Group();root.add(spoon);const bowl=mesh(new THREE.SphereGeometry(.16,20,12),metal,0,4.0,0,spoon);bowl.scale.set(1.4,.3,1);const spoonHandle=mesh(new THREE.BoxGeometry(.65,.035,.065),metal,-.42,4.03,0,spoon);spoon.visible=false;
 const falling=[];for(let i=0;i<9;i++)falling.push(mesh(new THREE.BoxGeometry(.07,.07,.07),new THREE.MeshStandardMaterial({color:0xfbf2db}),0,0,0));
@@ -48,7 +50,7 @@ const shadow=mesh(new THREE.PlaneGeometry(30,30),new THREE.ShadowMaterial({opaci
 let width=1,height=1;function resize(){width=host.clientWidth;height=host.clientHeight;renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix();}new ResizeObserver(resize).observe(host);resize();
 function renderMenu(){const list=$('#menu-list');list.replaceChildren();recipes.forEach((r,i)=>{if(r.category!==state.category||(state.filter!=='all'&&r.family!==state.filter))return;const b=document.createElement('button');b.className='drink-option'+(r.id===state.recipe.id?' active':'');b.setAttribute('aria-pressed',String(r.id===state.recipe.id));b.innerHTML=`<span class="number">${String(recipes.filter(x=>x.category===r.category).indexOf(r)+1).padStart(2,'0')}</span><span><strong>${r.name}</strong><small>${r.family==='iced'?'Over ice':r.amounts.condensed?'Condensed milk':r.amounts.evaporated?'Evaporated milk':'No extra milk'}</small></span><span class="dot"></span>`;b.addEventListener('click',()=>selectRecipe(r));list.append(b);});}
 function setView(mixed){state.mixed=mixed;state.stirTime=mixed&&!reduced.matches?0:-1;state.mix=mixed&&reduced.matches?1:0;if(mixed){state.playing=false;updateUI();}$('#mixed').classList.toggle('active',mixed);$('#layers').classList.toggle('active',!mixed);$('#mixed').setAttribute('aria-pressed',String(mixed));$('#layers').setAttribute('aria-pressed',String(!mixed));$('#view-note').textContent=mixed?'Blended colour is illustrative':'Separated layers for illustration';}
-function selectRecipe(r){state.recipe=r;state.stirTime=-1;state.mix=0;state.mixed=false;setView(false);state.progress=1;state.playing=false;state.step='';$('#glass-name').textContent=r.name;$('#glass-number').textContent=String(recipes.filter(x=>x.category===r.category).indexOf(r)+1).padStart(2,'0');$('#glass-desc').textContent=r.desc;$('#recipe-title').textContent=r.name;$('#recipe-desc').textContent=r.desc;$('#temperature').textContent=r.amounts.ice?'ICED / 冰':'HOT / 热';$('#recipe-note').textContent=r.note;const list=$('#ingredient-list');list.replaceChildren();for(const k of stagesFor(r)){const row=document.createElement('div');row.className='ingredient';row.innerHTML=`<span class="swatch" style="background:${ingredients[k].color}"></span><span>${ingredients[k].name}</span><span class="amount">${r.amounts[k]} ${ingredients[k].unit}</span>`;list.append(row);}const stepList=$('#step-list');stepList.replaceChildren();const stages=stagesFor(r);stages.forEach((k,i)=>{const b=document.createElement('button');b.textContent=`${i+1}. ${ingredients[k].name}`;b.addEventListener('click',()=>{setView(false);state.playing=false;state.progress=(i+.55)/stages.length;updateUI();});stepList.append(b);});renderMenu();updateUI();}
+function selectRecipe(r){state.recipe=r;state.stirTime=-1;state.mix=0;state.mixed=false;setView(false);state.progress=1;state.playing=false;state.step='';$('#glass-name').textContent=r.name;$('#glass-number').textContent=String(recipes.filter(x=>x.category===r.category).indexOf(r)+1).padStart(2,'0');$('#glass-desc').textContent=r.desc;$('#recipe-title').textContent=r.name;$('#recipe-desc').textContent=r.desc;$('#temperature').textContent=r.amounts.ice?'ICED / 冰':'HOT / 热';$('#recipe-note').textContent=r.note;const list=$('#ingredient-list');list.replaceChildren();for(const k of stagesFor(r)){const row=document.createElement('div');row.className='ingredient';row.innerHTML=`<span class="swatch" style="background:${ingredients[k].color}"></span><span>${ingredients[k].name}</span><span class="amount">${r.amounts[k]} ${ingredients[k].unit}</span>`;list.append(row);}const stepList=$('#step-list');stepList.replaceChildren();const stages=stagesFor(r);stages.forEach((k,i)=>{const b=document.createElement('button');b.textContent=`${i+1}. ${ingredients[k].name}`;b.addEventListener('click',()=>{setView(false);state.playing=false;state.progress=(i+.55)/stages.length;updateUI();});stepList.append(b);});renderMenu();updateUI();document.dispatchEvent(new CustomEvent('drink-selected',{detail:r}));}
 function updateUI(){const stages=stagesFor(state.recipe),i=Math.min(stages.length-1,Math.floor(state.progress*stages.length));const text=state.progress>=1?'Ingredients added · select Stirred to mix':`Step ${i+1}/${stages.length} · ${ingredients[stages[i]].verb}`;if(text!==state.step){$('#step-status').textContent=text;state.step=text;}$('#progress').value=Math.round(state.progress*1000);$('#progress-text').textContent=Math.round(state.progress*100)+'%';$('#play').textContent=state.playing?'Ⅱ':'▶';$('#play').setAttribute('aria-label',state.playing?'Pause preparation':state.progress>=1?'Replay preparation':'Continue preparation');$('#step-list').querySelectorAll('button').forEach((b,j)=>b.classList.toggle('current',j===i&&state.progress<1));}
 function start(){if(phone.matches){$('#recipe-details').open=false;$('.stage').scrollIntoView({block:'start',behavior:'instant'});}state.progress=0;state.playing=true;state.step='';setView(false);updateUI();}
 $('#make').addEventListener('click',start);$('#play').addEventListener('click',()=>{if(state.progress>=1)start();else {if(state.mixed)setView(false);state.playing=!state.playing;updateUI();}});$('#progress').addEventListener('input',e=>{setView(false);state.playing=false;state.progress=Number(e.target.value)/1000;updateUI();});$('#speed').addEventListener('change',e=>state.speed=Number(e.target.value));$('#layers').addEventListener('click',()=>setView(false));$('#mixed').addEventListener('click',()=>setView(true));$('#reset-camera').addEventListener('click',resetCamera);document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{state.filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b));});renderMenu();}));
@@ -58,8 +60,8 @@ function selectCategory(category){
  const info=categories[category];document.documentElement.style.setProperty('--red',info.accent);
  $('#category-title').textContent=info.name;$('#category-description').textContent=info.desc;
  $('#style-count').textContent=recipes.filter(r=>r.category===category).length+' styles';
- $('#make').textContent='Make this '+info.name.toLowerCase();
- const referenceImage=$('#reference-image');referenceImage.hidden=!info.reference;if(info.reference){referenceImage.src=info.reference;referenceImage.alt='Your supplied '+info.name+' ordering guide';}else{referenceImage.removeAttribute('src');referenceImage.alt='';}
+ $('#make').textContent=category==='others'?'Make this drink':'Make this '+info.name.toLowerCase();
+ const referenceImage=$('#reference-image');referenceImage.hidden=!info.reference;if(info.reference){referenceImage.src=info.reference;referenceImage.alt=category==='others'?'Illustrated guide to 12 other kopitiam drinks':'Your supplied '+info.name+' ordering guide';}else{referenceImage.removeAttribute('src');referenceImage.alt='';}
  document.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category===category)));
  document.querySelectorAll('[data-filter]').forEach(b=>{b.classList.toggle('active',b.dataset.filter==='all');b.setAttribute('aria-pressed',String(b.dataset.filter==='all'));});
  selectRecipe(recipes.find(r=>r.category===category));
@@ -74,7 +76,9 @@ function frame(now){const dt=Math.min((now-previous)/1000,.05);previous=now;if(!
  const amounts=Object.fromEntries(liquidKeys.map(k=>[k,r.amounts[k]*(k==='powder'?.55*fractions[k]:pourFill(fractions[k]))]));const volume=Object.values(amounts).reduce((a,b)=>a+b,0),iceDisplace=r.amounts.ice*7*fractions.ice;
  const milk=amounts.condensed+amounts.evaporated;
  miloColor.set(r.category==='kopi'?'#3f2114':r.category==='teh'?'#79310c':'#472719');waterBlend.set(r.category==='kopi'?'#714123':r.category==='teh'?'#c07722':'#8d5939');milkColor.set(r.category==='teh'?'#e7b86d':'#c39667');mixColor.copy(miloColor).lerp(waterBlend,volume?(r.category==='milo'?Math.min(.72,amounts.water/Math.max(1,amounts.powder)*.045):amounts.water/volume*.65):0).lerp(milkColor,volume?Math.min(.85,milk/volume*4.2):0);
+ if(r.color)mixColor.set(r.color);
  let y=.35;for(const k of liquidKeys){const h=amounts[k]*.0108*(volume?1+iceDisplace/volume:1),m=liquids[k];m.visible=h>.001&&state.mix<.995;m.scale.y=Math.max(.001,h);m.position.y=y+h/2;m.material.color.copy(baseColors[k]).lerp(mixColor,state.mix);y+=h;}
+ garnishes.update(fractions,y);
  topping.visible=fractions.topping>0;topping.scale.set(.89,.28*fractions.topping,.89);topping.position.y=y+.035;
  const swirlColors=liquidKeys.filter(k=>amounts[k]>0).map(k=>ingredients[k].color);stirRig.update(state.stirTime,y,swirlColors.length?swirlColors:['#75472c']);
  blended.visible=volume>0&&state.mix>=.995;blended.scale.y=Math.max(.001,y-.35);blended.position.y=(y+.35)/2;blended.material.color.copy(mixColor);
@@ -94,7 +98,7 @@ if(document.modelContext?.registerTool){
  addEventListener('pagehide',()=>lifecycle.abort(),{once:true});
  try{Promise.resolve(document.modelContext.registerTool({
   name:'select_drink',title:'Choose a kopitiam drink',
-  description:'Select a Kopi, Teh or Milo recipe and show its ingredients in the glass. Does not start pouring.',
+  description:'Select a Kopi, Teh, Milo or Others recipe and show its ingredients in the glass. Does not start pouring.',
   inputSchema:{type:'object',properties:{recipeId:{type:'string',enum:recipes.map(r=>r.id)}},required:['recipeId'],additionalProperties:false},
   annotations:{readOnlyHint:false,untrustedContentHint:false},
   execute(input){if(!input||typeof input.recipeId!=='string'||Object.keys(input).some(k=>k!=='recipeId'))throw new Error('Provide a valid recipeId only.');const r=recipes.find(x=>x.id===input.recipeId);if(!r)throw new Error('Unknown recipe.');selectCategory(r.category);selectRecipe(r);return {id:r.id,name:r.name,category:r.category,ingredients:stagesFor(r).map(k=>({name:ingredients[k].name,amount:r.amounts[k],unit:ingredients[k].unit}))};}

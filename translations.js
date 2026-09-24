@@ -1,5 +1,50 @@
 // English source text is the key; the two columns are Simplified Chinese and Japanese.
 const entries=`
+Others|其他饮品|その他
+04 / 其他|04 / 其他|04 / その他
+Make this drink|制作这杯饮品|この飲み物を作る
+ONE COUNTER · MORE LOCAL FAVOURITES|一个柜台 · 更多本地风味|ひとつのカウンター・もっと地元の味を
+Citrus, honey, barley and more kopitiam favourites.|柑橘、蜂蜜、薏米等咖啡店人气饮品。|柑橘、はちみつ、大麦など、コピティアムの人気ドリンク。
+Illustrated guide to 12 other kopitiam drinks|12种其他咖啡店饮品插图指南|その他のコピティアムドリンク12種のイラストガイド
+Explore 47 drinks with Kopi, Teh and a Higgsfield-generated Others reference guide.|探索47种饮品，并查看咖啡、茶及由Higgsfield生成的其他饮品参考图。|47種類のドリンクと、コピ・テーおよびHiggsfield生成のその他ドリンクの参考ガイドをご覧ください。
+Others menu reference: Kaffe & Toast ↗|其他饮品菜单参考：Kaffe & Toast ↗|その他のメニュー参考：Kaffe & Toast ↗
+Explore 47 Singapore Kopi, Teh, Milo and other drinks with interactive 3D pouring and stirring, plus the classic kopitiam breakfast.|通过互动三维冲泡和搅拌动画，探索47种新加坡咖啡、茶、美禄及其他饮品，以及经典咖啡店早餐。|注ぐ・混ぜる3Dアニメーションで、シンガポールの47種類のドリンクと定番の朝食を楽しみましょう。
+Coffee and black tea with condensed milk.|咖啡和红茶加入炼奶。|コーヒーと紅茶に練乳を加えた一杯。
+Coffee and black tea with evaporated milk.|咖啡和红茶加入淡奶。|コーヒーと紅茶にエバミルクを加えた一杯。
+Milky coffee and tea, chilled over ice.|奶香咖啡与红茶，加冰饮用。|ミルク入りのコーヒーと紅茶を氷で冷やした一杯。
+Orange-hued Thai tea with creamy milk and ice.|橙色泰式茶，加入香浓奶和冰块。|オレンジ色のタイティーにミルクと氷を加えた一杯。
+Tart lime with preserved plum and ice.|酸爽青柠配酸梅和冰块。|ライムと干し梅に氷を加えた爽やかな一杯。
+Sweet black tea with lemon and ice.|甜红茶加入柠檬和冰块。|甘い紅茶にレモンと氷を加えた一杯。
+A gently sweet, cloudy barley drink.|微甜、浑浊的薏米水。|やさしい甘さの白濁した大麦ドリンク。
+Cloudy barley water brightened with lemon.|薏米水配清新柠檬。|大麦ドリンクに爽やかなレモンを添えて。
+Golden honey stirred into warm water.|金色蜂蜜融入温水。|温かい水に黄金色のはちみつを溶かした一杯。
+Warm honey water with a citrus lift.|温热蜂蜜水配清新柠檬。|温かいはちみつ水にレモンの香りを添えて。
+A light, aromatic lemongrass infusion.|清淡芳香的香茅茶。|軽やかで香り豊かなレモングラスティー。
+A clear, fragrant tea without milk or sugar.|清澈芳香的中国茶，不加奶和糖。|ミルクも砂糖も加えない、澄んだ香り豊かな中国茶。
+Illustrative recipe inspired by the menu; amounts, garnishes and serving temperatures vary by shop.|受菜单启发的示意配方；用量、装饰和饮用温度因店而异。|メニューを参考にした例です。分量、添え物、提供温度は店舗により異なります。
+Honey|蜂蜜|はちみつ
+Pour honey|倒入蜂蜜|はちみつを注ぐ
+Brewed Thai tea|冲泡泰式茶|抽出したタイティー
+Pour Thai tea|倒入泰式茶|タイティーを注ぐ
+Lime juice|青柠汁|ライム果汁
+Pour lime juice|倒入青柠汁|ライム果汁を注ぐ
+Barley water|薏米水|大麦ドリンク
+Pour barley water|倒入薏米水|大麦ドリンクを注ぐ
+Lemongrass infusion|香茅茶|レモングラスティー
+Pour lemongrass infusion|倒入香茅茶|レモングラスティーを注ぐ
+Brewed Chinese tea|冲泡中国茶|抽出した中国茶
+Pour Chinese tea|倒入中国茶|中国茶を注ぐ
+Lemon slice|柠檬片|レモンスライス
+Add lemon|加入柠檬|レモンを加える
+Lime slice|青柠片|ライムスライス
+Add lime|加入青柠|ライムを加える
+Preserved plum|酸梅|干し梅
+Add preserved plum|加入酸梅|干し梅を加える
+Barley grains|薏米粒|大麦の粒
+Add barley grains|加入薏米粒|大麦の粒を加える
+Lemongrass stalk|香茅茎|レモングラスの茎
+Add lemongrass|加入香茅|レモングラスを加える
+
 Created by|创作者|制作
 Kopitiam Lab — Singapore food & drink culture|咖啡店实验室 — 新加坡饮食文化|コピティアム・ラボ — シンガポールの食文化
 Explore 35 Singapore Kopi, Teh and Milo orders with interactive 3D pouring and stirring, plus the classic kopitiam breakfast.|通过互动三维冲泡和搅拌动画，探索35种新加坡咖啡、茶和美禄，以及经典咖啡店早餐。|注ぐ・混ぜる3Dアニメーションで、シンガポールのコピ・テー・ミロ35種類と定番の朝食を楽しみましょう。
@@ -181,6 +226,19 @@ Choose language|选择语言|言語を選択
 `;
 const dictionary=new Map(entries.trim().split('\n').map(line=>{const [en,zh,ja]=line.split('|');return [en,{zh,ja}];}));
 const names=`
+Yuan Yang|鸳鸯|ユンヨン
+Yuan Yang C|淡奶鸳鸯|エバミルク入りユンヨン
+Iced Yuan Yang|冰鸳鸯|アイスユンヨン
+Thai Iced Milk Tea|泰式冰奶茶|タイアイスミルクティー
+Iced Plum Lime Juice|冰酸梅青柠汁|アイス梅ライムジュース
+Iced Lemon Tea|冰柠檬茶|アイスレモンティー
+Barley Drink|薏米水|大麦ドリンク
+Barley Lemon Drink|柠檬薏米水|レモン大麦ドリンク
+Honey Drink|蜂蜜水|はちみつドリンク
+Honey Lemon Drink|蜂蜜柠檬水|はちみつレモン
+Lemongrass Drink|香茅水|レモングラスドリンク
+Chinese Tea|中国茶|中国茶
+
 Kopi Siew Dai|少甜咖啡|甘さ控えめコピ
 Kopi Gah Dai|多甜咖啡|甘めのコピ
 Kopi Gao|浓咖啡|濃いめのコピ
@@ -223,7 +281,7 @@ export function translate(text,language){
   if((match=source.match(/^Step (\d+\/\d+) · (.+)$/)))result=`${language==='zh'?'步骤':'手順'} ${match[1]} · ${translate(match[2],language)}`;
   else if((match=source.match(/^(\d+)\. (.+)$/)))result=`${match[1]}. ${translate(match[2],language)}`;
   else if((match=source.match(/^(\d+) (styles|ways to order)$/)))result=language==='zh'?`${match[1]}种点法`:`${match[1]}種類の飲み方`;
-  else if((match=source.match(/^(\d+) (g|ml|cubes)$/)))result=`${match[1]} ${{zh:{g:'克',ml:'毫升',cubes:'块'},ja:{g:'g',ml:'ml',cubes:'個'}}[language][match[2]]}`;
+  else if((match=source.match(/^(\d+) (g|ml|cubes|pieces)$/)))result=`${match[1]} ${{zh:{g:'克',ml:'毫升',cubes:'块',pieces:'片／个'},ja:{g:'g',ml:'ml',cubes:'個',pieces:'個'}}[language][match[2]]}`;
   else if((match=source.match(/^Paired with (.+)$/)))result=language==='zh'?`搭配${translate(match[1],language)}`:`${translate(match[1],language)}と一緒に`;
   else if((match=source.match(/^Your supplied (.+) ordering guide$/)))result=language==='zh'?`您提供的${translate(match[1],language)}点单指南`:`提供された${translate(match[1],language)}の注文ガイド`;
  }
