@@ -21,7 +21,7 @@ The 3D kitchen was interrupted. Reload to restore it.|三维厨房已中断。�
 Food culture|饮食文化|食文化
 MANY ROOTS · ONE SHARED TABLE|多元渊源 · 同桌共享|多彩なルーツ・ひとつの食卓
 Singapore’s Hawker Table|新加坡小贩餐桌|シンガポールのホーカー食卓
-25 dishes and food traditions. Open a card, meet the ingredients, and discover a little of the culture behind each plate.|25种美食与饮食传统。展开卡片，认识食材，了解每道美食背后的文化。|25の料理と食文化。カードを開いて、食材と一皿の背景をのぞいてみましょう。
+19 dishes and food traditions. Open a card, meet the ingredients, and discover a little of the culture behind each plate.|19种美食与饮食传统。展开卡片，认识食材，了解每道美食背后的文化。|19の料理と食文化。カードを開いて、食材と一皿の背景をのぞいてみましょう。
 Recipes travelled with communities and grew through local tastes. Hawker centres bring these traditions together over everyday meals.|食谱随社群迁徙，并因本地口味而发展。小贩中心让这些传统在日常餐桌上相遇。|料理は人々とともに旅をし、地元の味覚に育まれました。ホーカーセンターでは日々の食事にその伝統が集います。
 食 · MAKAN|食 · MAKAN|食 · MAKAN
 Filter food stories|筛选美食故事|食のストーリーを絞り込む

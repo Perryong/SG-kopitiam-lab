@@ -23,7 +23,6 @@ const rows=[
  ['ice-kacang','sweets',4,0,'Ice Kacang|红豆冰|アイスカチャン','Shaved ice, beans, syrups|刨冰、红豆、糖浆|かき氷・豆・シロップ','Icy, sweet|冰凉香甜|冷たく甘い','A colourful hawker dessert.|色彩缤纷的小贩甜品。|色鮮やかなホーカースイーツ。'],
  ['nasi-padang','rice',4,2,'Nasi Padang|巴东饭|ナシパダン','Rice, curries, vegetables|米饭、咖喱、蔬菜|ご飯・カレー・野菜','Spiced, varied|香料浓、多样|スパイス豊かで多彩','A Sumatran tradition on local tables.|苏门答腊风味融入本地餐桌。|スマトラの食文化を地元の食卓で。'],
  ['nasi-lemak','rice',4,3,'Nasi Lemak|椰浆饭|ナシレマ','Coconut rice, sambal, anchovies|椰浆饭、参巴、江鱼仔|ココナッツライス・サンバル・小魚','Fragrant, spicy|芳香微辣|香り豊かでスパイシー','Malay roots, enjoyed beyond breakfast.|马来渊源，不止早餐。|マレーのルーツ。朝食以外にも親しまれる。'],
- ['murtabak','snacks',5,0,'Murtabak|印度馅饼|ムルタバ','Flatbread, meat, egg, onion|薄饼、肉、蛋、洋葱|薄焼きパン・肉・卵・玉ねぎ','Crisp, spiced|酥脆、香料浓|香ばしくスパイス豊か','A staple of Indian-Muslim cooking.|印度穆斯林饮食的常见美味。|インド系ムスリム料理の定番。'],
  ['chilli-crab','seafood',5,1,'Chilli Crab|辣椒螃蟹|チリクラブ','Crab, tomato-chilli sauce, egg, mantou|螃蟹、番茄辣椒酱、鸡蛋、馒头|蟹・トマトチリソース・卵・マントウ','Sweet, tangy, gently spicy|甜酸、微辣|甘酸っぱく、ほどよい辛さ','A hands-on shared feast.|动手剥蟹，共享盛宴。|手を使って楽しむシェアのごちそう。'],
  ['sambal-stingray','seafood',5,2,'Sambal Stingray|参巴魔鬼鱼|サンバル・スティングレイ','Stingray, sambal, banana leaf|魔鬼鱼、参巴、香蕉叶|エイ・サンバル・バナナの葉','Fiery, smoky|香辣、炭香|辛味と香ばしさ','A classic hawker barbecue order.|小贩烧烤的经典选择。|ホーカーのバーベキューの定番。'],
  ['fish-head-curry','seafood',5,3,'Fish Head Curry|咖喱鱼头|フィッシュヘッドカレー','Fish head, curry, vegetables|鱼头、咖喱、蔬菜|魚の頭・カレー・野菜','Tangy, spiced|酸香、香料浓|酸味とスパイス','Indian and Chinese tastes intersect.|印度与华人口味交汇。|インドと中華の味覚が交わる料理。']
