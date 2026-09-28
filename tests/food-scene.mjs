@@ -11,8 +11,7 @@ for(const food of foods.filter(f=>f.id!=='kaya-toast')){
  const table=dish.root.getObjectByName('Hawker table');assert.ok(['Table top','Stool seat 1','Chilli sauce','Kopi cup','Tissue packet'].every(n=>table?.getObjectByName(n)),food.id+': hawker table setting');
  if(food.id==='fish-head-curry'){assert.ok(dish.ingredients[0].children.some(o=>o.name==='Snapper head cheek'));assert.ok(dish.ingredients[0].children.some(o=>o.name==='Pectoral fin'));}
  if(food.id==='bak-kut-teh')dish.ingredients[0].traverse(o=>assert.notEqual(o.geometry?.type,'BoxGeometry','ribs must not be rectangular blocks'));
- if(food.id==='chicken-rice')assert.ok(dish.ingredients[1].children.some(o=>o.geometry?.type==='ExtrudeGeometry'),'chicken has cut faces');
- for(const [dishId,part] of [['nasi-lemak','Thigh crust'],['sambal-stingray','Stingray wing'],['rojak','Prawn paste coat'],['bak-chor-mee','Braised shiitake 1'],['oyster-omelette','Oyster'],['roast-meat','Duck skin 1'],['satay','Satay meat'],['ice-kacang','Shaved ice'],['chilli-crab','Claw left'],['char-kway-teow','Lap cheong 1']])if(food.id===dishId)assert.ok(dish.root.getObjectByName(part),dishId+': Kiln model part '+part);
+ for(const [dishId,part] of [['nasi-lemak','Fried chicken'],['sambal-stingray','Stingray wing'],['rojak','Prawn paste coat'],['bak-chor-mee','Braised shiitake 1'],['oyster-omelette','Oyster'],['roast-meat','Duck skin 1'],['satay','Satay meat'],['ice-kacang','Shaved ice'],['chilli-crab','Cooked crab'],['char-kway-teow','Lap cheong 1'],['hokkien-mee','Stock glaze 1'],['carrot-cake','Radish cake'],['chicken-rice','Poached chicken 1']])if(food.id===dishId)assert.ok(dish.root.getObjectByName(part),dishId+': Kiln model part '+part);
  for(const p of [0,.13,.38,.63,.88,1,.25,0,1]){
   const state=dish.update(p);
   assert.equal(state.ready,p===1);

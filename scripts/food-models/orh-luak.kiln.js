@@ -46,8 +46,8 @@ function build() {
   createPart('s0 Batter', disc(1.18, top, (x, z, u) => -0.145, 3), M(0xe6d39a, 0.35), { parent: root });
   // Step 1: plump oysters, cream bodies with dark frilled mantles
   const r = rng(11), bodies = [], frills = [];
-  for (let i = 0; i < 16; i++) {
-    const a = i * 2.39996 + r() * 0.4, d = 0.95 * Math.sqrt((i + 0.5) / 16), x = Math.cos(a) * d, z = Math.sin(a) * d, y = top(x, z, d / 1.18) + 0.04;
+  for (let i = 0; i < 7; i++) {
+    const a = i * 2.39996 + r() * 0.4, d = 0.85 * Math.sqrt((i + 0.5) / 7), x = Math.cos(a) * d, z = Math.sin(a) * d, y = top(x, z, d / 1.18) + 0.04;
     bodies.push([x, y + 0.03, z, 0.21, 0.12, 0.14, 40 + i]);
     frills.push([x + 0.015, y + 0.005, z + 0.01, 0.25, 0.06, 0.17, 80 + i]);
   }

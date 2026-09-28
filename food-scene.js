@@ -2,14 +2,15 @@ import * as THREE from './vendor/three.module.js';
 import fishHeadModel from './assets/fish-head-model.js';
 import hawkerTableModel from './assets/hawker-table-model.js';
 // Kiln-authored dishes painted in Blender; loaded on demand because each module is several hundred KB.
-const modelFiles={'fried-chicken':()=>import('./assets/fried-chicken-model.js'),'sambal-stingray':()=>import('./assets/sambal-stingray-model.js'),'rojak':()=>import('./assets/rojak-model.js'),'bak-chor-mee':()=>import('./assets/bak-chor-mee-model.js'),'orh-luak':()=>import('./assets/orh-luak-model.js'),'roast-meat':()=>import('./assets/roast-meat-model.js'),'satay':()=>import('./assets/satay-model.js'),'ice-kacang':()=>import('./assets/ice-kacang-model.js'),'chilli-crab':()=>import('./assets/chilli-crab-model.js'),'char-kway-teow':()=>import('./assets/char-kway-teow-model.js')};
-const modelKinds={'fried-chicken':['fried-chicken',0,{pivot:[.95,-.1],at:[.7,-.065,-.45],scale:1.15,turn:-1.03}],'stingray-leaf':['sambal-stingray',0],'stingray-wing':['sambal-stingray',1],'stingray-sambal':['sambal-stingray',2],'stingray-garnish':['sambal-stingray',3],
+const modelFiles={'sambal-stingray':()=>import('./assets/sambal-stingray-model.js'),'rojak':()=>import('./assets/rojak-model.js'),'bak-chor-mee':()=>import('./assets/bak-chor-mee-model.js'),'orh-luak':()=>import('./assets/orh-luak-model.js'),'roast-meat':()=>import('./assets/roast-meat-model.js'),'satay':()=>import('./assets/satay-model.js'),'ice-kacang':()=>import('./assets/ice-kacang-model.js'),'chilli-crab':()=>import('./assets/chilli-crab-model.js'),'char-kway-teow':()=>import('./assets/char-kway-teow-model.js'),'hokkien-mee':()=>import('./assets/hokkien-mee-model.js'),'carrot-cake':()=>import('./assets/carrot-cake-model.js'),'chicken-rice':()=>import('./assets/chicken-rice-model.js'),'nasi-lemak':()=>import('./assets/nasi-lemak-model.js')};
+const modelKinds={'cr-rice':['chicken-rice',0],'cr-cucumber':['chicken-rice',1],'cr-chicken':['chicken-rice',2],'cr-sauce':['chicken-rice',3],'nl-rice':['nasi-lemak',0,{turn:Math.PI,at:[0,-.2,0],scale:.82}],'nl-chicken':['nasi-lemak',1,{turn:Math.PI,at:[0,-.2,0],scale:.82}],'nl-egg-cucumber':['nasi-lemak',2,{turn:Math.PI,at:[0,-.2,0],scale:.82}],'nl-sambal':['nasi-lemak',3,{turn:Math.PI,at:[0,-.2,0],scale:.82}],'stingray-leaf':['sambal-stingray',0],'stingray-wing':['sambal-stingray',1],'stingray-sambal':['sambal-stingray',2],'stingray-garnish':['sambal-stingray',3],
  'rojak-fruit':['rojak',0],'rojak-fritters':['rojak',1],'rojak-sauce':['rojak',2],'rojak-peanuts':['rojak',3],'bcm-toppings':['bak-chor-mee',1],'bcm-sauce':['bak-chor-mee',2],'bcm-garnish':['bak-chor-mee',3],
  'orh-egg':['orh-luak',0],'orh-oysters':['orh-luak',1],'orh-sear':['orh-luak',2],'orh-garnish':['orh-luak',3],'roast-duck':['roast-meat',1],'roast-char-siu':['roast-meat',2],'roast-cucumber':['roast-meat',3],
  'satay-skewers':['satay',0],'satay-char':['satay',1],'satay-peanut-dip':['satay',2],'satay-sides':['satay',3],'beans':['ice-kacang',0],'ice':['ice-kacang',1],'syrup':['ice-kacang',2],'corn':['ice-kacang',3],
  'crab':['chilli-crab',0],'crab-sauce':['chilli-crab',1],'crab-herbs':['chilli-crab',2],'mantou':['chilli-crab',3],
- 'ckt-egg-sausage':['char-kway-teow',1],'ckt-sauce':['char-kway-teow',2],'ckt-cockles':['char-kway-teow',3]};
-const models={};
+ 'ckt-egg-sausage':['char-kway-teow',1],'ckt-sauce':['char-kway-teow',2],'ckt-sprouts':['char-kway-teow',3],
+ 'hokkien-toss':['hokkien-mee',2],'cc-cubes':['carrot-cake',0],'cc-egg':['carrot-cake',1],'cc-sear':['carrot-cake',2],'cc-scallions':['carrot-cake',3]};
+const models={},textureLoader=new THREE.TextureLoader();
 export async function loadFoodModels(id){for(const step of preparations[id]?.steps||[]){const file=modelKinds[step.kind]?.[0];if(file&&!models[file])models[file]=(await modelFiles[file]()).default;}}
 import {preparations} from './data/preparations.js';
 export {preparations};
@@ -52,15 +53,15 @@ export function createFoodScene(parent,id){
  }else if(recipe.vessel==='grill'){
   box(root,'#30312d',0,.09,0,4.3,.20,3.65);for(let i=0;i<13;i++)box(root,'#777873',-1.9+i*.32,.24,0,.055,.05,3.4);
  }else if(recipe.vessel==='board'){cyl(root,'#bd8f56',0,.12,0,2.4,.16);}
- else{cyl(root,'#f7efdf',0,.12,0,2.35,.11);ring(root,'#416775',0,.20,0,2.19);ring(root,'#fff6e5',0,.18,0,2.31,.045);}
+ else if(recipe.vessel!=='scan'){cyl(root,'#f7efdf',0,.12,0,2.35,.11);ring(root,'#416775',0,.20,0,2.19);ring(root,'#fff6e5',0,.18,0,2.31,.045);}
  function scatter(g,n,color,r=1.2,size=.06,y=.1){for(let i=0;i<n;i++){const a=i*2.39996,d=r*Math.sqrt((i+.5)/n);const m=oval(g,color,Math.cos(a)*d,y+(i%3)*.022,Math.sin(a)*d,size,size*.65,size*.6);m.rotation.y=a;}}
  // Seeded per dish part so rebuilds, replay and scrubbing stay identical.
  const rng=seed=>()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
  const tintMat=(key,roughness,bumpScale)=>{if(!materials.has(key))materials.set(key,new THREE.MeshStandardMaterial({color:'#fff',vertexColors:key.startsWith('strand'),roughness,bumpMap:surface,bumpScale}));return materials.get(key);};
  function rice(g){
   // Individual grains packed over a moulded dome; a darker core reads as shadow between grains.
-  const yellow=id==='chicken-rice',tint=new THREE.Color(yellow?'#eedcab':'#f5efe2'),r=rng(4242),a=.77,c=.43,cx=-.55,y0=.21,count=1100,loose=26;
-  oval(g,foodMat(yellow?'#cdb57c':'#d8ceb6',.7),cx,y0,0,a*.95,c*.93,a*.95);
+  const tint=new THREE.Color('#f5efe2'),r=rng(4242),a=.77,c=.43,cx=-.55,y0=.21,count=1100,loose=26;
+  oval(g,foodMat('#d8ceb6',.7),cx,y0,0,a*.95,c*.93,a*.95);
   const grains=new THREE.InstancedMesh(new THREE.CapsuleGeometry(.025,.07,3,8),tintMat('rice',.42,.004),count);grains.castShadow=grains.receiveShadow=true;g.add(grains);
   const p=new THREE.Vector3(),n=new THREE.Vector3(),t=new THREE.Vector3(),b=new THREE.Vector3(),q=new THREE.Quaternion(),tilt=new THREE.Quaternion(),basis=new THREE.Matrix4(),m=new THREE.Matrix4(),size=new THREE.Vector3(),color=new THREE.Color(),X=new THREE.Vector3(1,0,0);
   for(let i=0;i<count;i++){
@@ -107,14 +108,18 @@ export function createFoodScene(parent,id){
   if(!models[file])throw new Error('Call loadFoodModels before creating '+id);
   const holder=new THREE.Group();holder.position.set(...at);holder.rotation.y=turn;holder.scale.setScalar(scale);g.add(holder);
   for(const part of models[file].filter(p=>p.step===step)){
-   const geometry=new THREE.BufferGeometry(),pos=part.positions,uv=new Float32Array(pos.length/3*2);
-   for(let i=0,j=0;i<pos.length;i+=3,j+=2){uv[j]=pos[i]*.7;uv[j+1]=(pos[i+2]+pos[i+1])*.7;}
-   geometry.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));geometry.setAttribute('normal',new THREE.Float32BufferAttribute(part.normals,3));geometry.setAttribute('color',new THREE.Float32BufferAttribute(part.colors,3));geometry.setAttribute('uv',new THREE.BufferAttribute(uv,2));geometry.setIndex(part.indices);
-   const piece=mesh(geometry,new THREE.MeshStandardMaterial({vertexColors:true,roughness:part.roughness,side:part.doubleSided?THREE.DoubleSide:THREE.FrontSide,bumpMap:surface,bumpScale:.01}),-pivot[0],0,-pivot[1],holder);piece.name=part.name;
+   const geometry=new THREE.BufferGeometry(),pos=part.positions;let uv=part.uvs;
+   if(!uv){uv=new Float32Array(pos.length/3*2);for(let i=0,j=0;i<pos.length;i+=3,j+=2){uv[j]=pos[i]*.7;uv[j+1]=(pos[i+2]+pos[i+1])*.7;}}
+   geometry.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));geometry.setAttribute('normal',new THREE.Float32BufferAttribute(part.normals,3));geometry.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));geometry.setIndex(part.indices);
+   if(part.colors)geometry.setAttribute('color',new THREE.Float32BufferAttribute(part.colors,3));
+   // Scanned parts carry a photo texture; authored parts carry painted vertex colours.
+   const map=part.map&&typeof document!=='undefined'?textureLoader.load(part.map,t=>{t.colorSpace=THREE.SRGBColorSpace;}):null;
+   const material=new THREE.MeshStandardMaterial({vertexColors:!!part.colors,map,roughness:part.roughness,side:part.doubleSided?THREE.DoubleSide:THREE.FrontSide,bumpMap:surface,bumpScale:part.map?.002:.01});
+   const piece=mesh(geometry,material,-pivot[0],0,-pivot[1],holder);piece.name=part.name;
   }
  }
  const noodleStyles={
-  'white-noodles':[{count:55,radius:.034,colors:['#f2e9d6','#ece0c6'],len:4.5,seed:11,roughness:.3,peak:.16,R:1.25,wander:.22,sink:.1}],
+  'laksa-noodles':[{count:55,radius:.03,colors:['#e8c25a','#dfb24a','#efcf72'],len:4.5,seed:11,roughness:.3,peak:.16,R:1.25,wander:.22,sink:.1}],
   'yellow-noodles':[{count:150,radius:.016,colors:['#e6c261','#dcb04c','#edcf7a'],curl:.035,len:2.8,seed:21,roughness:.4}],
   'flat-noodles':[{count:58,radius:.011,width:.085,colors:['#7a4520','#5e3217','#94602f','#b8875a'],len:2.8,seed:31,roughness:.28,peak:.15}],
   'mee-pok':[{count:60,radius:.01,width:.05,colors:['#e0a94a','#d4903a','#e8b85a'],len:2.8,seed:51,roughness:.32}],
@@ -159,28 +164,17 @@ export function createFoodScene(parent,id){
    }return;
   }
   if(kind==='garlic'){for(let i=0;i<6;i++)oval(g,'#eee0b4',Math.cos(i)*1.2,.12,Math.sin(i)*1.1,.2,.16,.12);scatter(g,30,'#3b3024',1.35,.021,.30);return;}
-  if(kind==='chicken'){
-   for(let i=0;i<5;i++){
-    const shape=new THREE.Shape(),width=.49-Math.abs(i-2)*.045;
-    shape.moveTo(-width,0);shape.quadraticCurveTo(-width-.04,.24,-.16,.30);shape.quadraticCurveTo(.16,.36,width,.20);shape.lineTo(width,.015);shape.quadraticCurveTo(0,-.03,-width,0);
-    const cut=mesh(new THREE.ExtrudeGeometry(shape,{depth:.22,bevelEnabled:true,bevelSegments:3,steps:1,bevelSize:.025,bevelThickness:.025,curveSegments:14}),foodMat('#dcc3a4'),.65,.08,(i-2)*.29,g);cut.rotation.y=.10;
-    tube(g,foodMat('#f0dfb7',.38),[[.65-width,.19,(i-2)*.29+.11],[.45,.38,(i-2)*.29+.11],[.70,.40,(i-2)*.29+.11],[.65+width,.29,(i-2)*.29+.11]],.055);
-   }return;
-  }
   if(kind==='char-siu'){slices(g,'#bd7560','#8e3524',.65,.2);return;}
   if(kind==='fish-slices'){slices(g,'#f1e6cf','#aaa999',.2,.1);return;}
-  if(kind.includes('cucumber')){for(let i=0;i<4;i++){const x=-1.55+i*.12,z=.05+i*.32;cyl(g,'#44733a',x,.13,z,.26,.075);cyl(g,'#c3d187',x,.175,z,.22,.015);}if(kind==='egg-cucumber'){oval(g,'#f5edd5',.8,.14,.9,.36,.16,.42);oval(g,'#e9b133',.8,.285,.9,.20,.06,.24);}return;}
+  if(kind.includes('cucumber')){for(let i=0;i<4;i++){const x=-1.55+i*.12,z=.05+i*.32;cyl(g,'#44733a',x,.13,z,.26,.075);cyl(g,'#c3d187',x,.175,z,.22,.015);}return;}
   if(kind.endsWith('-dip')){dip(g,kind==='peanut-dip'?'#a97230':'#b34528');return;}
-  if(kind.includes('sauce')&&kind!=='crab-sauce'){const color=kind==='red-sauce'?'#b74c24':'#b1884f';for(let i=0;i<16;i++){const a=i*2.4,r=.15+(i%5)*.24;oval(g,mat(color,.22),Math.cos(a)*r,.34,Math.sin(a)*r,.24,.017,.15);}return;}
-  if(kind==='radish-cubes'||kind==='tofu'){chunks(g,kind==='tofu'?'#dab777':'#e4d5ac',12);if(kind==='tofu'){for(let i=0;i<4;i++)oval(g,'#e9d6b0',Math.cos(i)*1.2,.2,Math.sin(i)*1.2,.22,.22,.22);greens(g);}return;}
-  if(kind==='egg'){for(let i=0;i<9;i++){const a=i*2.4;oval(g,'#e5b546',Math.cos(a),.08,Math.sin(a),.35,.055,.26);}return;}
-  if(kind==='sear-marks'){for(let i=0;i<22;i++){const a=i*2.4,r=(i%6)*.20;oval(g,'#8a5127',Math.cos(a)*r,.33,Math.sin(a)*r,.07,.008,.045);}return;}
+  if(kind==='tofu'){chunks(g,'#dab777',12);for(let i=0;i<4;i++)oval(g,'#e9d6b0',Math.cos(i)*1.2,.2,Math.sin(i)*1.2,.22,.22,.22);greens(g);return;}
   if(kind==='wontons'){for(let i=0;i<4;i++){const x=Math.cos(i*1.5),z=Math.sin(i*1.5);oval(g,'#e5c988',x,.26,z,.30,.20,.23);for(let j=0;j<5;j++){const fold=oval(g,'#f1d99a',x+(j-2)*.08,.43,z,.06,.10,.10);fold.rotation.z=(j-2)*.2;}}return;}
   if(kind==='stew-chicken'||kind==='rendang'){chunks(g,kind==='rendang'?'#71442a':'#9e6037',9);return;}
   if(kind==='keluak'){for(let i=0;i<3;i++){oval(g,'#322b23',Math.cos(i*2)*1.05,.25,Math.sin(i*2)*1.05,.22,.25,.18);oval(g,'#574232',Math.cos(i*2)*1.05,.44,Math.sin(i*2)*1.05,.15,.04,.12);}return;}
   if(kind==='durian-shell'||kind==='durian-open'){if(kind==='durian-open')return;for(const side of [-1,1]){const h=new THREE.Group();g.add(h);h.userData.side=side;oval(h,'#718041',side*.36,.4,0,.76,.53,1.14);oval(h,'#e8dcb0',side*.36,.66,0,.62,.22,1);for(let i=0;i<70;i++){const a=i*2.4,z=((i%10)/9-.5)*1.9,x=side*.36+Math.cos(a)*.6,y=.4+Math.sin(a)*.44;const spike=mesh(new THREE.ConeGeometry(.09,.23,5),'#83944b',x,y,z,h);spike.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),new THREE.Vector3(Math.cos(a),Math.sin(a),0));}}return;}
   if(kind==='durian-flesh'||kind==='durian-segment'){for(let i=0;i<(kind==='durian-flesh'?4:1);i++)oval(g,'#eac44c',kind==='durian-flesh'?(i%2?1:-1)*.85:0,.69,kind==='durian-flesh'?(i<2?-.45:.4):.95,.32,.23,.49);return;}
-  if(kind==='sambal'||kind==='sambal-anchovies'){oval(g,'#aa4824',1.2,.12,.6,.38,.12,.32);if(kind.includes('anchovies')){const side=new THREE.Group();side.position.set(-.45,0,1.25);g.add(side);scatter(side,15,'#a99051',.3,.07,.13);for(let i=0;i<9;i++){const m=oval(side,'#b89a5e',-.13+(i%3)*.13,.16,-.13+Math.floor(i/3)*.13,.03,.03,.19);m.rotation.y=i;}}return;}
+  if(kind==='sambal'){oval(g,'#aa4824',1.2,.12,.6,.38,.12,.32);return;}
   if(kind==='fish-head'){
    for(const part of fishHeadModel){
     const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(part.positions,3));geometry.setAttribute('normal',new THREE.Float32BufferAttribute(part.normals,3));geometry.setIndex(part.indices);
@@ -221,8 +215,8 @@ export function createFoodScene(parent,id){
   spoonLiquid.visible=active&&pouring&&phase<.88;spoonLiquid.scale.y=.012*Math.max(.05,1-phase);
   if(pouring){
    const dip=kind.endsWith('-dip'),broth=kind.includes('broth')||kind.includes('curry');
-   const color={'laksa-broth':'#c76a30','clear-broth':'#b89554','milky-broth':'#e2d3ae','orange-curry':'#cf7837','brown-curry':'#75452a','crab-sauce':'#ba4b1c','chilli-dip':'#b34528','peanut-dip':'#a97230','dark-sauce':'#503120','syrup':'#be4961','egg':'#e5b546','stingray-sambal':'#a8321a','orh-egg':'#e6d39a','satay-peanut-dip':'#a97230','bcm-sauce':'#9a3a1a'}[kind]||'#b1884f';
-   end.set(dip?1.5:0,base+(dip?.21:broth?-.10:kind==='syrup'?1.31:kind==='crab-sauce'?.67:kind==='egg'||kind==='orh-egg'?.12:.36),dip?.8:0);
+   const color={'laksa-broth':'#c76a30','clear-broth':'#b89554','milky-broth':'#e2d3ae','orange-curry':'#cf7837','brown-curry':'#75452a','crab-sauce':'#ba4b1c','chilli-dip':'#b34528','cr-sauce':'#6a4326','peanut-dip':'#a97230','dark-sauce':'#503120','syrup':'#be4961','egg':'#e5b546','stingray-sambal':'#a8321a','orh-egg':'#e6d39a','cc-egg':'#efc24c','satay-peanut-dip':'#a97230','bcm-sauce':'#9a3a1a'}[kind]||'#b1884f';
+   end.set(dip?1.5:0,base+(dip?.21:broth?-.10:kind==='syrup'?1.31:kind==='crab-sauce'?.67:kind==='orh-egg'||kind==='cc-egg'?.12:.36),dip?.8:0);
    spoon.position.set(end.x,base+2,end.z-.2);spoon.updateMatrix();start.copy(lip).applyMatrix4(spoon.matrix);
    delta.copy(end).sub(start);stream.position.copy(start).add(end).multiplyScalar(.5);stream.quaternion.setFromUnitVectors(up,delta.clone().normalize());
    const width=.04*ease((phase-.12)/.08)*(1-ease((phase-.80)/.08));stream.scale.set(width,delta.length(),width);
@@ -232,6 +226,6 @@ export function createFoodScene(parent,id){
   steam.forEach((line,i)=>{line.visible=heating;const pos=line.geometry.attributes.position;for(let j=0;j<15;j++){const t=j/14;pos.setXYZ(j,(i-2)*.35+Math.sin(t*6+phase*9+i)*.08,base+.5+t*.85,Math.cos(i)*.5);}pos.needsUpdate=true;});
   return {progress:p,stage,phase,fractions,ready:p===1};
  }
- function dispose(){const geos=new Set(),mats=new Set();root.traverse(o=>{if(o.geometry)geos.add(o.geometry);if(o.material)mats.add(o.material);});for(const g of new Set([...geos,sphere,cube,organic]))g.dispose();for(const m of new Set([...mats,...materials.values()]))m.dispose();surface.dispose();root.removeFromParent();}
+ function dispose(){const geos=new Set(),mats=new Set();root.traverse(o=>{if(o.geometry)geos.add(o.geometry);if(o.material)mats.add(o.material);});for(const g of new Set([...geos,sphere,cube,organic]))g.dispose();for(const m of new Set([...mats,...materials.values()])){m.map?.dispose();m.dispose();}surface.dispose();root.removeFromParent();}
  update(1);return {root,ingredients,pour:{spoon,stream,lip,start,end},update,dispose};
 }

@@ -51,26 +51,26 @@ async function build() {
   // Step 1: stingray wing — thick cut edge fanning out to a thin rim, cartilage ridges radiating
   const P = [-1.45, 0, 0], Y0 = 0.05;
   const wingAt = (u, v, lift) => {
-    const th = (v - 0.5) * 1.5, rr = 0.35 + u * 1.95 * (1 - 0.12 * ((v - 0.5) * 2) ** 2);
+    const th = (v - 0.5) * 1.5, rr = 0.35 + u * 1.95 * (1 - 0.12 * ((v - 0.5) * 2) ** 2) * (1 + 0.05 * Math.sin(th * 9) * u + 0.04 * fbm(th * 4, 0, u * 2) * u);
     const x = P[0] + Math.cos(th) * rr, z = Math.sin(th) * rr;
     const t = 0.2 * (1 - u) ** 0.9 + 0.025, ridge = 0.014 * Math.pow(Math.abs(Math.sin(th * 26)), 0.5) * smooth(0.04, 0.15, u);
     return [x, Y0 + lift * (t + ridge + 0.008 * fbm(x * 3, 0, z * 3)), z];
   };
-  createPart('s1 Stingray wing', slab((u, v) => wingAt(u, v, 1), (u, v) => wingAt(u, v, 0), 36, 48), M(0xbf9160, 0.5), { parent: root });
+  createPart('s1 Stingray wing', slab((u, v) => wingAt(u, v, 1), (u, v) => wingAt(u, v, 0), 36, 48), M(0xa86e3a, 0.45), { parent: root });
   // Step 2: thick sambal spread over the wing, tapering to a ragged edge
   const coatAt = (u, v, top) => {
-    const uu = 0.05 + u * 0.85, vv = 0.05 + v * 0.9, p = wingAt(uu, vv, 1);
-    const edge = Math.min(u, 1 - u, v, 1 - v) * 4, mask = smooth(0, 0.6 + 0.25 * fbm(uu * 7, 1, vv * 7), edge);
-    return top ? [p[0], p[1] + (0.05 + 0.03 * fbm(p[0] * 5, 2, p[2] * 5)) * mask + 0.002, p[2]] : [p[0], p[1] - 0.004, p[2]];
+    const uu = 0.02 + u * 0.93, vv = 0.03 + v * 0.94, p = wingAt(uu, vv, 1);
+    const edge = Math.min(u, 1 - u, v, 1 - v) * 5, mask = smooth(0, 0.5 + 0.3 * fbm(uu * 7, 1, vv * 7), edge);
+    return top ? [p[0], p[1] + (0.065 + 0.035 * fbm(p[0] * 6, 2, p[2] * 6) + 0.015 * fbm(p[0] * 18, 4, p[2] * 18)) * mask + 0.002, p[2]] : [p[0], p[1] - 0.004, p[2]];
   };
-  createPart('s2 Sambal', slab((u, v) => coatAt(u, v, true), (u, v) => coatAt(u, v, false), 32, 40), M(0x8c2a12, 0.3), { parent: root });
+  createPart('s2 Sambal', slab((u, v) => coatAt(u, v, true), (u, v) => coatAt(u, v, false), 32, 40), M(0x5c2010, 0.28), { parent: root });
   const rs = rng(9), lumps = [];
-  for (let i = 0; i < 140; i++) { const u = 0.1 + rs() * 0.75, v = 0.1 + rs() * 0.8, p = coatAt(u, v, true), s = 0.025 + rs() * 0.03; lumps.push([p[0], p[1] + 0.005, p[2], s, s * 0.5, s, 300 + i]); }
-  createPart('s2 Sambal lumps', crumbs(lumps), M(0x5a160a, 0.3), { parent: root });
+  for (let i = 0; i < 230; i++) { const u = 0.06 + rs() * 0.86, v = 0.06 + rs() * 0.88, p = coatAt(u, v, true), s = 0.02 + rs() * 0.035; lumps.push([p[0], p[1] + 0.005, p[2], s, s * 0.5, s, 300 + i]); }
+  createPart('s2 Sambal lumps', crumbs(lumps), M(0x3e140a, 0.3), { parent: root });
   // Step 3: chopped shallots and calamansi halves
   const rg = rng(21), shallots = [];
-  for (let i = 0; i < 70; i++) { const u = 0.15 + rg() * 0.6, v = 0.15 + rg() * 0.7, p = coatAt(u, v, true), s = 0.03 + rg() * 0.03; shallots.push([p[0], p[1] + 0.012, p[2], s, s * 0.45, s * 0.7, 500 + i]); }
-  createPart('s3 Shallots', crumbs(shallots), M(0xc9789a, 0.35), { parent: root });
+  for (let i = 0; i < 60; i++) { const u = 0.12 + rg() * 0.7, v = 0.12 + rg() * 0.76, p = coatAt(u, v, true), s = 0.025 + rg() * 0.02; shallots.push([p[0], p[1] + 0.01, p[2], s * 1.4, s * 0.3, s * 0.6, 500 + i]); }
+  createPart('s3 Shallots', crumbs(shallots), M(0xd8bcc6, 0.3), { parent: root });
   const skin = M(0x4f8a2c, 0.4), flesh = M(0xf0a43a, 0.3);
   const half = await revolveProfile([[0, 0], [0.16, 0], [0.155, 0.05], [0.12, 0.11], [0.06, 0.145], [0, 0.155]], { segments: 32 });
   for (const [k, [x, z, ry]] of [[1.05, -1.25, 20], [1.28, -0.85, 70], [1.2, 1.22, -30]].entries()) {

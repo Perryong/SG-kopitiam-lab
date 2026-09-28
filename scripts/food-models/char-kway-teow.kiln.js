@@ -52,13 +52,9 @@ function build() {
   const char = [];
   for (let i = 0; i < 70; i++) { const a = rg() * 6.28, d = 1.25 * Math.sqrt(rg()), x = Math.cos(a) * d, z = Math.sin(a) * d, s = 0.02 + rg() * 0.03; char.push([x, surf(x, z) + 0.02, z, s * 1.4, s * 0.4, s, 200 + i]); }
   createPart('s2 Wok hei char', crumbs(char), M(0x1f140c, 0.4), { parent: root });
+  // Step 3: bean sprouts and chives tossed through at the end
   const sprout = M(0xefe8d0, 0.35), chive = M(0x3f7f2e, 0.4);
-  for (let i = 0; i < 18; i++) { const a = rg() * 6.28, d = 1.1 * Math.sqrt(rg()), x = Math.cos(a) * d, z = Math.sin(a) * d, h = rg() * 6.28, y = surf(x, z) + 0.06; createPart('s2 Bean sprout ' + (i + 1), pipeAlongPath([[x, y, z], [x + Math.cos(h) * 0.12, y + 0.02, z + Math.sin(h) * 0.12], [x + Math.cos(h + 0.5) * 0.24, y - 0.01, z + Math.sin(h + 0.5) * 0.24]], 0.014, { tubularSegments: 10, radialSegments: 6 }), sprout, { parent: root }); }
-  for (let i = 0; i < 14; i++) { const a = rg() * 6.28, d = 1.1 * Math.sqrt(rg()), x = Math.cos(a) * d, z = Math.sin(a) * d, h = rg() * 6.28, y = surf(x, z) + 0.07; createPart('s2 Chives ' + (i + 1), pipeAlongPath([[x, y, z], [x + Math.cos(h) * 0.18, y + 0.02, z + Math.sin(h) * 0.18], [x + Math.cos(h - 0.3) * 0.34, y, z + Math.sin(h - 0.3) * 0.34]], 0.011, { tubularSegments: 10, radialSegments: 5 }), chive, { parent: root }); }
-  // Step 3: plump blood cockles tossed through at the end
-  const rc = rng(21), cockles = [], cockleEdge = [];
-  for (let i = 0; i < 18; i++) { const a = rc() * 6.28, d = 1.1 * Math.sqrt(rc()), x = Math.cos(a) * d, z = Math.sin(a) * d, y = surf(x, z) + 0.07; cockles.push([x, y, z, 0.12, 0.08, 0.1, 300 + i]); cockleEdge.push([x + 0.02, y - 0.02, z, 0.14, 0.05, 0.12, 400 + i]); }
-  createPart('s3 Cockles', crumbs(cockles), M(0x7a3326, 0.2), { parent: root });
-  createPart('s3 Cockle frill', crumbs(cockleEdge), M(0xc08a6a, 0.3), { parent: root });
+  for (let i = 0; i < 18; i++) { const a = rg() * 6.28, d = 1.1 * Math.sqrt(rg()), x = Math.cos(a) * d, z = Math.sin(a) * d, h = rg() * 6.28, y = surf(x, z) + 0.06; createPart('s3 Bean sprout ' + (i + 1), pipeAlongPath([[x, y, z], [x + Math.cos(h) * 0.12, y + 0.02, z + Math.sin(h) * 0.12], [x + Math.cos(h + 0.5) * 0.24, y - 0.01, z + Math.sin(h + 0.5) * 0.24]], 0.014, { tubularSegments: 10, radialSegments: 6 }), sprout, { parent: root }); }
+  for (let i = 0; i < 14; i++) { const a = rg() * 6.28, d = 1.1 * Math.sqrt(rg()), x = Math.cos(a) * d, z = Math.sin(a) * d, h = rg() * 6.28, y = surf(x, z) + 0.07; createPart('s3 Chives ' + (i + 1), pipeAlongPath([[x, y, z], [x + Math.cos(h) * 0.18, y + 0.02, z + Math.sin(h) * 0.18], [x + Math.cos(h - 0.3) * 0.34, y, z + Math.sin(h - 0.3) * 0.34]], 0.011, { tubularSegments: 10, radialSegments: 5 }), chive, { parent: root }); }
   return root;
 }
